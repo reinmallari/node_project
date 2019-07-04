@@ -7,9 +7,6 @@ passport.use(new GoogleStrategy({
 	clientID: secret.google.clientID,
 	clientSecret: secret.google.clientSecret,
 	callbackURL: secret.google.callbackURL
-    // clientID: '195642924636-dbt5dq5c0olr37o7en5qvhqfh6gd13qq.apps.googleusercontent.com',
-    // clientSecret: 'OSsY6p8EwgWkVHJ1bqciniUs',
-    // callbackURL: "http://localhost:3000/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOne({
@@ -68,6 +65,8 @@ passport.use('local.signup', new localStrategy({
         }
         var newUser = new User();
         newUser.fullname = req.body.fullname;
+	   newUser.address = req.body.address;
+	   newUser.age = req.body.age;
         newUser.email = req.body.email;
         newUser.password = newUser.encryptPassword(req.body.password);
         newUser.save((err) => {
