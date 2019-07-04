@@ -5,16 +5,23 @@ var crypto = require('crypto');
 var User = require('../models/user');
 var secret = require('../secret/secret');
 module.exports = (app,passport) => {
-	app.get('/', (req,res,next) =>{
-		res.render('index',{title:'Index  || RateMe'});
-	});
+	app.get("/", (req, res, next) => {
+       if (req.session.cookie.originalMaxAge !== null) {
+
+         res.redirect("/home");
+
+       } else {
+           res.render("index", { title: "Index || RateMe"});
+
+       }
+     });
+
 	app.get('/signup',(req,res) => {
 		var errors = req.flash('error');
-		console.log(errors);
 		res.render('user/signup',{title: 'Sign Up || RateMe',messages: errors,hasErrors:errors.length > 0});
 	});
 	app.post('/signup', validate,passport.authenticate('local.signup',{
-		successRedirect: '/home',
+		successRedirect: '/login',
 		failureRedirect: '/signup',
 		failureFlash: true
 	}));
@@ -23,12 +30,19 @@ module.exports = (app,passport) => {
 		res.render('user/login',{title: 'Login || RateMe',messages: errors,hasErrors:errors.length > 0});
 	});
 	app.post('/login',validate_login,passport.authenticate('local.login',{
-		successRedirect: '/home',
+		// successRedirect: '/home',
 		failureRedirect: '/login',
 		failureFlash: true
-	}));
+	}),(req, res) => {
+         if (req.body.rememberme) {
+           req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // 30 days
+         } else {
+           req.session.cookie.expires = null;
+         }
+         res.redirect("/home");
+       });
 	app.get('/home',(req,res) => {
-		res.render('home',{title: 'Home || RateMe'});
+		res.render('home',{title: 'Home || RateMe', name:req.user});
 	});
 	app.get('/forgot',(req,res) => {
 		var errors = req.flash('error');
@@ -119,7 +133,6 @@ module.exports = (app,passport) => {
                  );
                  return res.redirect("/forgot");
                }
-
                req.checkBody("password", "Password is Required").notEmpty();
                req
                  .checkBody("password", "Password Must Not Be Less Than 5")
@@ -131,7 +144,6 @@ module.exports = (app,passport) => {
                    errors.forEach(error => {
                      messages.push(error.msg);
                    });
-
                    var errors = req.flash("error");
                    res.redirect("/reset/" + req.params.token);
                  } else {
@@ -192,6 +204,20 @@ module.exports = (app,passport) => {
          }
        ]);
      });
+	app.get('/logout',(req,res)=>{
+		req.logout();
+		req.session.destroy((err)=>{
+			res.redirect('/');
+		})
+	});
+	//Google Authentication
+	app.get("/auth/google", passport.authenticate("google", { scope: [ 'email', 'profile' ]}));
+     app.get("/auth/google/callback",passport.authenticate("google", {
+         successRedirect: "/home",
+         failureRedirect: "/login",
+         failureFlash: true
+       })
+     );
 }
 function validate(req,res,next){
 	req.checkBody('fullname', 'Fullname is required').notEmpty();

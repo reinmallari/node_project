@@ -1,6 +1,4 @@
 <% layout('layout') %>
-
-
 <div class="container">
     <br><br>
     <div class="text-center reg_msg">
@@ -9,10 +7,10 @@
    <br><br>
    <div class="banner-title text-center reg_msg">
         <h2 class="fancy"><span>Enter Your Email</span></h2>
-   </div><br>
+   </div>
+   <br><br>
     <p class="text-center">Please enter your email and a password reset link will be sent.</p>
     <div class="row signup">
-
         <% if(hasErrors) {%>
             <% for(var i = 0; i < messages.length; i++) {%>
                 <div class="alert alert-danger">
@@ -24,30 +22,26 @@
                 </div>
             <% } %>
         <% } %>
-
         <% if(noErrors) {%>
             <div class="alert alert-info">
                <a href="#" class="close" data-dismiss="alert" aria-label="close">
                    &times;
                </a>
                <%= info %>
-
             </div>
         <% } %>
 
-        <form method="POST" action="/forgot">
-            <div class="form-group input_group">
-                <input id="email" class="form-control" name="email" type="text" autocomplete="on" placeholder="EMAIL" style="margin-bottom:20px;">
-            </div>
-
-            <div class="form-group" id="submit">
-                <input type="submit" value="Send" class="form-control btn btn-primary" name="submit">
-            </div>
-        </form>
-
-        <div>
-            <h4>Already reset your password? <a href="/login">Login</a></h4>
-        </div>
-
-    </div>
-</div>
+	 <div class = "container">
+	   	<div class="wrapper">
+	   		<form action="/forgot" method="post" class="form-signin">
+	   		    <h3 class="form-signin-heading">Forgot Password</h3>
+	   			  <hr class="colorgraph"><br>
+	   			  <input type="text" class="form-control" name="email" placeholder="Email" autofocus="" />
+				  <br>
+	   			  <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Submit" type="Submit">Submit</button>
+	   			  <div class="form-group">
+	    			  	<h5 class="center_account_text">Already Reset your password?<a href="/login">Login</a></h5>
+	   			  </div>
+	   		</form>
+	   	</div>
+	   </div>
