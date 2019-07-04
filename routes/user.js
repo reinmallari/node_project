@@ -134,8 +134,7 @@ module.exports = (app,passport) => {
                  return res.redirect("/forgot");
                }
                req.checkBody("password", "Password is Required").notEmpty();
-               req
-                 .checkBody("password", "Password Must Not Be Less Than 5")
+               req.checkBody("password", "Password Must Not Be Less Than 5")
                  .isLength({ min: 5 });
                var errors = req.validationErrors();
                if (req.body.password == req.body.cpassword) {
