@@ -7,15 +7,12 @@ var secret = require('../secret/secret');
 module.exports = (app,passport) => {
 	app.get("/", (req, res, next) => {
        if (req.session.cookie.originalMaxAge !== null) {
-
          res.redirect("/home");
-
        } else {
            res.render("index", { title: "Index || RateMe"});
 
        }
      });
-
 	app.get('/signup',(req,res) => {
 		var errors = req.flash('error');
 		res.render('user/signup',{title: 'Sign Up || RateMe',messages: errors,hasErrors:errors.length > 0});
@@ -217,6 +214,13 @@ module.exports = (app,passport) => {
          failureFlash: true
        })
      );
+	app.get('/auth/twitter',passport.authenticate('twitter',{scope: ['email', 'profile'] }));
+	app.get('/auth/twitter/callback',passport.authenticate('twitter', {
+		failureRedirect: '/home' }),
+	  function(req, res) {
+	    // Successful authentication, redirect home.
+	    	res.redirect('/home');
+	  });
 }
 function validate(req,res,next){
 	req.checkBody('fullname', 'Fullname is required').notEmpty();

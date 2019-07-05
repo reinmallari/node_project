@@ -11,7 +11,7 @@ var passport = require("passport");
 var flash = require("connect-flash");
 var app = express();
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://rmallari:Janessarein1005.@node-8icqv.mongodb.net/test?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://username:password.@node-8icqv.mongodb.net/test?retryWrites=true&w=majority');
 require('./config/passport');
 require('./secret/secret');
 app.use(express.static('public'));
@@ -31,6 +31,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 require('./routes/user')(app,passport);
+require('./routes/company')(app);
 app.listen(3000,function(){
 	console.log('App is running on port 3000');
 })

@@ -1,8 +1,10 @@
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 var User = require('../models/user');
 var secret = require('../secret/secret');
+//Start of google authentication
 passport.use(new GoogleStrategy({
 	clientID: secret.google.clientID,
 	clientSecret: secret.google.clientSecret,
@@ -42,6 +44,46 @@ passport.use(new GoogleStrategy({
     })
   }
 ));
+//End of google authentication
+//Start of twitter authentication
+passport.use(new TwitterStrategy({
+    consumerKey: secret.twitter.consumerKey,
+    consumerSecret: secret.twitter.consumerSecret,
+    callbackURL: secret.twitter.callbackURL
+  },
+  function(token, tokenSecret, profile, cb) {
+    User.findOne({'twitter':profile.id}, (err, user) => {
+	    if (err) {
+		  return(500,{
+			  'error': err
+		  })
+		  console.log(err);
+	  }	 if (!user) {
+	  		 User.findOne({'id':profile.id}, (err, user) => {
+	  			 // console.log(profile);
+	  			if(err){
+	  			    return done(err);
+	  			}
+	  			var messages = [];
+	  			if(!user){
+	  				user = new User({
+	  				    fullname:profile.displayName,
+	   			    })
+	   			    user.save(function(err) {
+	   					  if (err) console.log(err);
+	   					  // return done(err, user);
+	   					  return cb(err,user);
+	   				   });
+	  		    } else {
+	  			    return cb(err,user);
+	  		    }
+	  		 });
+	  	 }
+    });
+  }
+));
+//End of twitter authentication
+
 passport.serializeUser((user,done) => {
 	done(null,user.id);
 });
