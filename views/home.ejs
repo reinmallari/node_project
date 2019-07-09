@@ -1,62 +1,31 @@
 <% layout('layout2')%>
-<div id="page-content-wrapper">
-  <% include partials/sidebar %>
-  <div id="page-content-wrapper">
-    <% include partials/navbar %>
-    <div class="container-fluid main_body">
-      <h1>Hello, <%= name.fullname %></h1>
-      <p>What would you like to do today?</p>
-    </div>
-    <div class="row">
-	    <div class="row">
-           <div class="col-md-4" id="colDesc">
-             <div class="info-icon"><i class="fa fa-sign-in"></i></div>
-             <h3 class="text-center">Add Company</h3>
-             <p class="text-center">
-               Add company profile. Registered employees can give ratings and
-               reviews.
-             </p>
-
-             <a href="/company/create" class="btn btn-block btn-primary link_btn"
-               >Add</a
-             >
-           </div>
-
-           <div class="col-md-4" id="colDesc">
-             <div class="info-icon"><i class="fa fa-search"></i></div>
-             <h3 class="text-center">Search</h3>
-             <p class="text-center">
-               Search through our business catalogue and find your best partner.
-             </p>
-
-             <a href="/company/search" class="btn btn-block btn-primary link_btn"
-               >Search</a
-             >
-           </div>
-
-           <div class="col-md-4" id="colDesc">
-             <div class="info-icon"><i class="fa fa-star"></i></div>
-             <h3 class="text-center">Rate</h3>
-             <p class="text-center">
-               Rate and review other companies and get your company reviewed as
-               well.
-             </p>
-
-             <a href="/companies" class="btn btn-block btn-primary link_btn"
-               >Rate</a
-             >
-           </div>
-
-           <div class="col-md-4" id="colDesc">
-             <div class="info-icon"><i class="fa fa-user"></i></div>
-             <h3 class="text-center">Account</h3>
-             <p class="text-center">Edit a User</p>
-
-             <a href="/user/edit" class="btn btn-block btn-primary link_btn"
-               >Edit</a
-             >
-           </div>
-         </div>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div class="container-fluid">
+  <div class="row content">
+	  <% include partials/sidebar %>
+    <div class="col-sm-9">
+      <hr>
+      <h2>Add Company</h2>
+      <p>Add company profile. Registered employees can give ratings andreviews.</p>
+	 <a href="/company/create" class="btn btn-block btn-dark link_btn">Add</a>
+      <br><hr>
+      <h2>Rate</h2>
+      <p>Rate and review other companies and get your company reviewed aswell.</p>
+	 <a href="" class="btn btn-block btn-dark link_btn">Rate</a>
+      <hr>
+	 <hr>
+	 <h2>Search</h2>
+	 <p>Search through our business catalogue and find your best partner.</p>
+	 <a href="" class="btn btn-block btn-dark link_btn">Search</a>
+	 <br><hr>
+	 <h2>Account</h2>
+	 <p>Edit a User</p>
+	 <a href="" class="btn btn-block btn-dark link_btn">Edit</a>
+	 <hr>
     </div>
   </div>
 </div>
+</body>
+</html>

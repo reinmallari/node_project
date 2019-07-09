@@ -83,7 +83,6 @@ passport.use(new TwitterStrategy({
   }
 ));
 //End of twitter authentication
-
 passport.serializeUser((user,done) => {
 	done(null,user.id);
 });
@@ -97,7 +96,6 @@ passport.use('local.signup', new localStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, (req, email, password, done) => {
-
     User.findOne({'email':email}, (err, user) => {
         if(err){
             return done(err);
@@ -133,25 +131,3 @@ passport.use('local.login', new localStrategy({
         return done(null, user);
     });
 }));
-// passport.use(new GoogleStrategy((req, token, refreshToken, profile, done) => {
-//     User.findOne({google:profile.id}, (err, user) => {
-//         if(err){
-//             return done(err);
-//         }
-//         if(user){
-//             done(null, user);
-//         }else{
-//             var newUser = new User();
-//             newUser.google = profile.id;
-//             newUser.fullname = profile.displayName;
-//             newUser.email = profile._json.email;
-//             newUser.tokens.push({token:token});
-//             newUser.save(function(err) {
-//                 if(err){
-//                     console.log(err);
-//                 }
-//                 done(null, newUser);
-//             });
-//         }
-//     })
-// }));

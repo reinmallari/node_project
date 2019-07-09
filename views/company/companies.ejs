@@ -1,0 +1,28 @@
+<% layout('layout2')%>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div class="container-fluid">
+  <div class="row content">
+	  <% include ../partials/sidebar %>
+	  <div class="col-sm-9">
+		  <h1>Companies</h1>
+	    <hr>
+	    <%for(i=0; i<data.length; i++){%>
+	    <div class="flex_companies_list">
+		    <div class="card">
+			    <img class="image_size_companies" src="/uploads/<%= data[i].image %>" alt="Avatar">
+			    <div class="container">
+				 <h4><b><%= data[i].name %></b></h4>
+				 <p>******</p>
+				 <p><%= data[i].sector%></p>
+				  <p><%= data[i].city %>, <%= data[i].country %></p>
+			    </div>
+			</div>
+		    <% }%>
+		  </div>
+	</div>
+  </div>
+</div>
+</body>
+</html>
