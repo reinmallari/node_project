@@ -1,0 +1,24 @@
+<% layout('layout2')%>
+<!DOCTYPE html>
+<div class="container-fluid">
+  <div class="row content">
+	  <% include ../partials/sidebar %>
+    <div class="col-sm-9">
+	    <div class="form-group ">
+		    <h1>Register Employee</h1>
+		    <label><%= data.name %></label>
+		    <hr>
+	    </div>
+	    <form method="POST" action="">
+		   <div class="form-group ">
+			  <label for="">Role</label>
+			  <input id="role" class="form-control" name="role" type="text" style="margin-bottom:20px;">
+			  <span id="errorRole" class="help-block"></span>
+		   </div>
+		   <div class="form-group">
+			  <input type="submit" id="role" value="Register" class="form-control btn btn-primary" name="employeeRole" style="">
+		   </div>
+	    </form>
+    </div>
+  </div>
+</div>

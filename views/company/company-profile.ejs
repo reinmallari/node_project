@@ -1,0 +1,59 @@
+<% layout('layout2')%>
+<!DOCTYPE html>
+<div class="container-fluid">
+  <div class="row content">
+	  <% include ../partials/sidebar %>
+	  <div class="col-sm-9">
+		  <h1>Company Profile</h1>
+	    <hr>
+	    <div class="container_profile">
+		      <div style="text-align:center">
+		        <h2>Company Name</h2>
+		        <p>City, Country</p>
+			   <p>https://www.testing.com</p>
+			    <input type="submit" value="Rate this Company">
+		      </div>
+		      <div class="row_profile">
+		        <div class="column_profile">
+		          <img src="/images/template_avatar.png" style="width:100%">
+		        </div>
+		        <div class="column_profile">
+		          <form action="/action_page.php">
+					<div class="card_profile_review">
+					  <div class="container_profile_review">
+					    <h4><b>5</b></h4>
+					    <p>Ratings</p>
+					    <p>total ratings receive</p>
+					  </div>
+					</div>
+					<div class="card_profile_review">
+					  <div class="container_profile_review">
+					    <h4><b>25</b></h4>
+					    <p>Total Stars</p>
+					    <p>total stars receive</p>
+					  </div>
+					</div>
+					<div class="card_profile_review">
+					  <div class="container_profile_review">
+					    <h4><b>Average Rating (5.5)</b></h4>
+					    <p>Based on 5 reviews</p>
+					  </div>
+					</div>
+					<div class="btn_margins">
+					<button type="button" class="btn btn-warning">Write Review</button>
+					<button type="button" class="btn btn-info">View Company Employees</button>
+					<% if(name.company.name != data.name) {%>
+						    <a href="/company/register-employee/<%= id %>" class="btn btn-primary">
+							   Register me as an employee
+						    </a><br><br>
+						<% } else { %>
+						    <h2>You are an employee</h2>
+						<% }%>
+					</div>
+		          </form>
+		        </div>
+		      </div>
+		    </div>
+		</div>
+  	</div>
+</div>

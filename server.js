@@ -31,6 +31,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 require('./routes/user')(app,passport);
+require('./routes/account')(app,passport);
 require('./routes/company')(app);
 app.listen(3000,function(){
 	console.log('App is running on port 3000');
