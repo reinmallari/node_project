@@ -4,6 +4,7 @@ var fs = require('fs');
 var async = require('async');
 var Company = require('../models/company');
 var User = require('../models/user');
+var {arrayAverage} = require('../myFunctions');
 module.exports = (app) => {
 	app.get('/company/create', (req, res) => {
 		var success = req.flash('success');
@@ -62,7 +63,25 @@ module.exports = (app) => {
 	});
 	app.get('/company-profile/:id', (req, res) => {
          Company.findOne({'_id':req.params.id}, (err, data) => {
-             res.render('company/company-profile', {title: 'Company Name', name:req.user, id: req.params.id,data: data});
+		     var avg = arrayAverage(data.ratingNumber);
+		    // console.log(data.employees[1].employeeId);
+		      res.render('company/company-profile', {title: 'Company Name', name:req.user, id: req.params.id,data: data,average: avg});
+		    // for(var i = 0 ; i < data.employees.length; i++) {
+			//     if (data.employees[i].employeeId === req.user.id) {
+			// 	    console.log(data.employees[i])
+			// 	     res.render('company/company-profile', {title: 'Company Name', name:req.user, id: req.params.id,data: data, profile_details:data.employees[i]});
+			//     }else{
+			// 	    console.log("wala dito");
+			// 	     res.render('company/company-profile', {title: 'Company Name', name:req.user, id: req.params.id,data: data});
+			//     }
+		    // }
+		    // if (data.employees[1].employeeId === req.user.id) {
+			//     console.log("matched")
+		    // }
+		    // User.findOne({'_id':req.user.id}, (err,data)=> {
+			//  console.log(data)
+		    // })
+             //res.render('company/company-profile', {title: 'Company Name', name:req.user, id: req.params.id,data: data});
          });
      });
 
@@ -76,9 +95,10 @@ module.exports = (app) => {
               function(callback){
                  Company.update({
                      '_id': req.params.id,
-                     'employees.employeeId': {$ne: req.user._id}
+                     'employees.employeeId': {$ne: req.user._id},
                  },
                  {
+				  department: req.body.department,
                       $push: {employees: {employeeId: req.user._id, employeeFullname:req.user.fullname, employeeRole:req.body.role}}
                  }, (err, count) => {
                      if(err){
@@ -94,13 +114,11 @@ module.exports = (app) => {
                               callback(err, data);
                           })
                       },
-
                       function(data, callback){
                           User.findOne({'_id': req.user._id}, (err, result) => {
                               result.role = req.body.role;
                               result.company.name = data.name;
                               result.company.image = data.image;
-
                               result.save((err) => {
                                   res.redirect('/home');
                               });

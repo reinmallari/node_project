@@ -8,10 +8,10 @@
 	    <hr>
 	    <div class="container_profile">
 		      <div style="text-align:center">
-		        <h2>Company Name</h2>
-		        <p>City, Country</p>
-			   <p>https://www.testing.com</p>
-			    <input type="submit" value="Rate this Company">
+		        <h2><%= data.name %></h2>
+		        <p><%= data.city %>, <%= data.country %></p>
+			   <p><%= data.website %></p>
+			    <a href="/review/<%= data._id %>" class="btn btn-success">Rate this company</a><br><br>
 		      </div>
 		      <div class="row_profile">
 		        <div class="column_profile">
@@ -21,27 +21,31 @@
 		          <form action="/action_page.php">
 					<div class="card_profile_review">
 					  <div class="container_profile_review">
-					    <h4><b>5</b></h4>
+					    <h4><b><%= data.ratingNumber.length %></b></h4>
 					    <p>Ratings</p>
 					    <p>total ratings receive</p>
 					  </div>
 					</div>
 					<div class="card_profile_review">
 					  <div class="container_profile_review">
-					    <h4><b>25</b></h4>
+					    <h4><b><%= data.ratingSum%></b></h4>
 					    <p>Total Stars</p>
 					    <p>total stars receive</p>
 					  </div>
 					</div>
 					<div class="card_profile_review">
 					  <div class="container_profile_review">
-					    <h4><b>Average Rating (5.5)</b></h4>
+						  	<h5 class="star" data-score="<%= average %>"></h5>
+					    <h4><b>Average Rating (<%= average%>)</b></h4>
 					    <p>Based on 5 reviews</p>
 					  </div>
 					</div>
 					<div class="btn_margins">
 					<button type="button" class="btn btn-warning">Write Review</button>
 					<button type="button" class="btn btn-info">View Company Employees</button>
+
+
+
 					<% if(name.company.name != data.name) {%>
 						    <a href="/company/register-employee/<%= id %>" class="btn btn-primary">
 							   Register me as an employee
