@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	//For company
     $('.upload-btn').on('click', function(){
         $('#upload-input').click();
 
@@ -27,7 +27,6 @@ $(document).ready(function(){
 
                 xhr: function(){
                     var xhr = new XMLHttpRequest();
-
                     xhr.upload.addEventListener('progress', function(e){
                         if(e.lengthComputable){
                             var uploadPercent = e.loaded / e.total;

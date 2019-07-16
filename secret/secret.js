@@ -1,7 +1,7 @@
 module.exports = {
 	auth:{
-		user: '',
-		pass: ''
+		user: 'reinmallari10@gmail.com',
+		pass: 'janessarein1005'
 	},
   google: {
 	  clientID: '195642924636-dbt5dq5c0olr37o7en5qvhqfh6gd13qq.apps.googleusercontent.com',

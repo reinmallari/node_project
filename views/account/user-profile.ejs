@@ -1,0 +1,60 @@
+<% layout('layout2')%>
+<!DOCTYPE html>
+<div class="container-fluid">
+  <div class="row content">
+	  <% include ../partials/sidebar %>
+	  <div class="col-sm-9">
+		  <h1>User Profile</h1>
+	    <hr>
+	    <div class="container_profile">
+		      <div style="text-align:center">
+		        <h2><%= user.id %></h2>
+			   <h3><p><%= user.email %></p></h3>
+			   <b><p><%= user.company.name %></p></b>
+			   <a href="/account/update-user/<%= id %>" class="btn btn-primary">
+				 Update User
+			   </a><br><br>
+		      </div>
+			 <%if (data.name != '') { %>
+			      <div class="row_profile">
+			        <div class="column_profile">
+					   <%if (data.image == '') { %>
+						   <img class="card-img-top" src="/images/template_avatar.png" alt="Card image" style="width:100%">
+					   <% } %>
+					    <%if (data.image!= '') { %>
+						    <img class="card-img-top" src="/uploads/<%= data.image %>" alt="Card image" style="width:100%">
+					     <% } %>
+			        	</div>
+			        <div class="column_profile">
+			          <form action="/action_page.php">
+						<div class="card_profile_review">
+						  <div class="container_profile_review">
+							<%if (data.ratingNumber.length > 0) { %>
+							    <h4><b><%= data.ratingNumber.length %></b></h4>
+							    <p>Ratings</p>
+							    <p>total ratings receive</p>
+						    	<% } %>
+						  </div>
+						</div>
+						<div class="card_profile_review">
+						  <div class="container_profile_review">
+						    <h4><b><%= data.ratingSum%></b></h4>
+						    <p>Total Stars</p>
+						    <p>total stars receive</p>
+						  </div>
+						</div>
+						<div class="card_profile_review">
+						  <div class="container_profile_review">
+								<h5 class="star" data-score="<%= average %>"></h5>
+						    <h4><b>Average Rating (<%= average%>)</b></h4>
+						    <p>Based on 5 reviews</p>
+						  </div>
+						</div>
+			          </form>
+			        </div>
+			      </div>
+			<% } %>
+		    </div>
+		</div>
+  	</div>
+</div>

@@ -1,0 +1,19 @@
+<% layout('layout2')%>
+<!DOCTYPE html>
+<div class="container-fluid">
+  <div class="row content">
+	  <% include ../partials/sidebar %>
+	  <div class="col-sm-9">
+		  <h1>User Profile</h1>
+	    <hr>
+	    <div class="container_profile">
+		      <div style="text-align:center">
+		        <h2><%= user.id %></h2>
+			   <h3><p><%= user.email %></p></h3>
+			   <b><p><%= user.company.name %></p></b>
+			   <h3><p>No Registered Company</p></h3>
+		      </div>
+		    </div>
+		</div>
+  	</div>
+</div>

@@ -6,16 +6,32 @@
 	  <div class="col-sm-9">
 		  <h1>List of Users</h1>
 	    <hr>
+	    <form action="/account/search" method="post">
+		   <div class="form-group ">
+			  <input id="" class="form-control" name="search" type="text" placeholder="Type company name" style="margin-bottom:20px;">
+		   </div>
+
+		   <div class="form-group">
+			  <input type="submit" id="search" value="Search" class="form-control btn btn-primary">
+		   </div>
+	    </form>
 		<div class="row">
 			<%for(i=0; i<data.length; i++){%>
-			 <div class="column">
-				<img class="card-img-top" src="/images/template_avatar.png" alt="Card image" style="width:100%">
-			   <div class="card">
-				 <h4><b><%= data[i].fullname %></b></h4>
-  				 <p><%= data[i].email%></p>
-  				  <p><%= data[i].id %></p>
-			   </div>
-			 </div>
+			<a class="color_text_a_tag_company" href="/account-profile/<%= data[i]._id %>">
+				 <div class="column">
+					 <%if (data[i].company.image == '') { %>
+						 <img class="card-img-top" src="/images/template_avatar.png" alt="Card image" style="width:100%">
+					 <% } %>
+					  <%if (data[i].company.image!= '') { %>
+						  <img class="card-img-top" src="/uploads/<%= data[i].company.image %>" alt="Card image" style="width:100%">
+					   <% } %>
+				   <div class="card">
+					 <h4><b><%= data[i].fullname %></b></h4>
+	  				 <p><%= data[i].email%></p>
+	  				  <p><%= data[i].id %></p>
+				   </div>
+				 </div>
+			 </a>
 			 <% }%>
 		    </div>
 		</div>
