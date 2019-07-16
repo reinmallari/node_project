@@ -11,8 +11,11 @@
 		        <h2><%= user.id %></h2>
 			   <h3><p><%= user.email %></p></h3>
 			   <b><p><%= user.company.name %></p></b>
-			   <a href="/account/update-user/<%= id %>" class="btn btn-primary">
+			   <a href="/account/update-user/<%= id %>" class="btn btn-primary hide_update_btn">
 				 Update User
+			   </a><br><br>
+			   <a href="/message/<%= id %>" class="btn btn-primary hide_message_btn">
+				 Message User
 			   </a><br><br>
 		      </div>
 			 <%if (data.name != '') { %>

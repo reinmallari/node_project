@@ -220,3 +220,11 @@ input[type=submit]:hover {
 .btn_margins{
 	margin-left:40px;
 }
+
+.hide_update_btn{
+	display: none;
+}
+
+.hide_message_btn{
+	display: none;
+}

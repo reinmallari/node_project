@@ -34,6 +34,7 @@ require('./routes/user')(app,passport);
 require('./routes/account')(app,passport);
 require('./routes/company')(app);
 require('./routes/review')(app);
+require("./routes/message")(app);
 app.listen(3000,function(){
 	console.log('App is running on port 3000');
 })

@@ -1,0 +1,47 @@
+<% layout('layout2')%>
+<!DOCTYPE html>
+<div class="container-fluid">
+  <div class="row content">
+	  <% include ../partials/sidebar %>
+    <div class="col-sm-9">
+	    <h4 style="">Send Message</h4>
+    		<input type="hidden" name="receiverId" id="receiverId" class="form-control" value="<%= data._id%>"><br>
+		<hr>
+	    		<div class="msg">
+					<div class="">
+					    <div class="">
+					        <ul class="chat">
+							   <% for(var i = 0; i <chats.length; i++) {%>
+								<li class="left clearfix"><span class="chat-img pull-left">
+									<img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
+								</span>
+									<div class="chat-body clearfix">
+										<div class="header">
+											<strong class="primary-font"><%= chats[i].userFromName %></strong>
+											<small class="pull-right ">
+												<span class=""><%= chats[i].createdAt %></span>
+											</small>
+										</div>
+										<p>
+											<%= chats[i].body %>
+										</p>
+									</div>
+								</li>
+							<% } %>
+					        </ul>
+					    </div>
+					</div>
+				</div><br>
+				   <input class="form-control" id="id" value="" type="hidden">
+				   <div class="form-group ">
+					  <label for="">Message</label>
+					<textarea id="msg" name="message" class="form-control" placeholder="Enter message" rows="5" cols="60"></textarea>
+				   </div>
+
+				   <div class="form-group">
+						<input type="submit" id="message" value="Send Message" class="form-control btn btn-primary" name="send">
+				   </div>
+
+    </div>
+  </div>
+</div>
