@@ -104,6 +104,7 @@ passport.use('local.signup', new localStrategy({
             return done(null, false, req.flash('error', 'User With Email Already Exist.'));
         }
         var newUser = new User();
+	   // console.log("eto:"+req.body.upload);
         newUser.fullname = req.body.fullname;
 	   newUser.address = req.body.address;
 	   newUser.age = req.body.age;

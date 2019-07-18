@@ -1,4 +1,6 @@
 var formidable = require('formidable');
+var path = require('path');
+var fs = require('fs');
 var User = require('../models/user');
 var Company = require('../models/company');
 var async = require('async');
@@ -109,7 +111,25 @@ module.exports = (app, passport) => {
 				// res.redirect('/forgot');
 		});
 	});
-
+	app.post('/upload', (req, res) => {
+		var form = new formidable.IncomingForm();
+		form.uploadDir = path.join(__dirname, '../public/uploads');
+		form.on('file', (field, file) => {
+			fs.rename(file.path, path.join(form.uploadDir, file.name), (err) => {
+				if (err) {
+					throw err
+				}
+				console.log('File has been renamed');
+			});
+		});
+		form.on('error', (err) => {
+			console.log('An error occured', err);
+		});
+		form.on('end', () => {
+			console.log('File upload was successful');
+		});
+		form.parse(req);
+	});
 }
 
 function validate(req, res, next) {

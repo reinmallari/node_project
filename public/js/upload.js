@@ -24,7 +24,6 @@ $(document).ready(function(){
                 success: function(data){
                     uploadInput.val('');
                 },
-
                 xhr: function(){
                     var xhr = new XMLHttpRequest();
                     xhr.upload.addEventListener('progress', function(e){

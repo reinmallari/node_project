@@ -7,10 +7,10 @@ var secret = require('../secret/secret');
 module.exports = (app,passport) => {
 	app.get("/", (req, res, next) => {
        if (req.session.cookie.originalMaxAge !== null) {
-         res.redirect("/home");
+         res.redirect("/");
        } else {
-           res.render("index", { title: "Index || RateMe"});
-
+		  var errors = req.flash('error');
+		  res.render('user/login',{title: 'Login || RateMe',messages: errors,hasErrors:errors.length > 0});
        }
      });
 	app.get('/signup',(req,res) => {
@@ -164,7 +164,6 @@ module.exports = (app,passport) => {
              }
            );
          },
-
          function(user, callback) {
            var smtpTransport = nodemailer.createTransport({
              service: "Gmail",
@@ -173,7 +172,6 @@ module.exports = (app,passport) => {
                pass: secret.auth.pass
              }
            });
-
            var mailOptions = {
              to: user.email,
              from: "RateMe " + "<" + secret.auth.user + ">",

@@ -32,7 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./routes/user')(app,passport);
 require('./routes/account')(app,passport);
-require('./routes/company')(app);
+require('./routes/upload')(app);
 require('./routes/review')(app);
 require("./routes/message")(app);
 app.listen(3000,function(){

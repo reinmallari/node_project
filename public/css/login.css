@@ -8,7 +8,7 @@
   padding: 30px 38px 66px;
   margin: 0 auto;
   background-color: #eee;
-  border: 3px dotted rgba(0,0,0,0.1);
+  /* border: 3px dotted rgba(0,0,0,0.1); */
   }
 
 .form-signin-heading {
@@ -60,13 +60,20 @@ input[type="password"] {
   background-color: #3B5998;
   color: white;
   margin:10px;
+  	display: none !important;
 }
 .google {
   background-color: #dd4b39;
   color: white;
   margin:10px;
+  width:100%;
+  display: none !important;
 }
 .btn:hover{
 	color:#FAFAFA;
 	background-color:#37474F;
+}
+
+.btn-block{
+	margin-top:10px !important;
 }

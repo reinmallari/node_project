@@ -1,60 +1,5 @@
 <% layout('layout') %>
-<!-- <div class="container">
-    <br><br>
-    <div class="text-center reg_msg">
-        <h1><a href="/">RateMe</a></h1>
-    </div>
-   <br><br>
-   <div class="col-md-offset-4">
-         <a href="/auth/facebook" class="btn btn-block btn-social btn-facebook btn-lg">
-            <i class="fa fa-facebook"></i> Login with Facebook
-        </a>
-    </div><br>
-    <div class="col-md-offset-4">
-		<a href="/auth/google" class="btn btn-block btn-social btn-google btn-lg">
-		   <i class="fa fa-google"></i> Login with Google
-	    </a>
-	</div><br>
-   <div class="text-center reg_msg">
-        <h2 class="fancy"><span>Login</span></h2>
-   </div><br>
-    <div class="row signup">
-	    <% if(hasErrors) {%>
-			  <% for(var i = 0; i <messages.length; i++) {%>
-				 <div class="alert alert-danger">
-				    <a href="#" class="close" data-dismiss="alert" aria-label="close">
-					   &times;
-				    </a>
-				    <%= messages[i] %>
-				 </div>
-			  <% } %>
-		   <% } %>
-        <form method="POST" action="/login">
-            <div class="form-group input_group">
-                <input id="email" class="form-control" name="email" type="text" autocomplete="on" placeholder="EMAIL" style="margin-bottom:20px;">
-            </div>
-            <div class="form-group input_group">
-                <input id="password" class="form-control" name="password" type="password" placeholder="PASSWORD" style="margin-bottom:20px;">
-            </div>
-            <div class="form-group">
-                <input type="submit" id="login" value="LOGIN" class="form-control btn btn-primary" name="login" style="">
-            </div>
-            <div class="form-group">
-                <label for="">
-                    <input type="checkbox" name="rememberme" class="" value="yes">
-                </label>&nbsp;&nbsp;Remember Me
-            </div>
-          </form>
-          <div>
-              <h4 class="pull-left">Don't have an account? <a href="/signup">Sign Up</a></h4>
-              <h4 class="pull-right"><a href="/forgot">Forgot Your Password?</a></h4>
-          </div>
-    </div>
-</div> -->
 <div class = "container">
-	<div class="text-center reg_msg">
-	    <h1><a href="/">RateMe</a></h1>
-	</div>
 	<div class="wrapper">
 		<% if(hasErrors) {%>
 			   <% for(var i = 0; i <messages.length; i++) {%>
@@ -68,29 +13,28 @@
 		    <% } %>
 		<form action="/login" method="post" name="Login_Form" class="form-signin">
 		    <h3 class="form-signin-heading">Sign In</h3>
-			  <hr class="colorgraph"><br>
 			  <input type="text" class="form-control" name="email" placeholder="Email" autofocus="" />
 			  <br>
 			  <input type="password" class="form-control" name="password" placeholder="Password"/>
 			  <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>
-			  <div class="form-group">
+			  <!-- <div class="form-group">
 				 <label for="">
 					<input type="checkbox" name="rememberme" class="" value="yes">
 				 </label>&nbsp;&nbsp;Remember Me
-			  </div>
+			  </div> -->
 			  <hr>
 			  <div class="display_flex_social">
 				  <a href="/auth/twitter" class="fb btn">
-				  	<i class="fa fa-twitter fa-fw"></i> Twitter
+				  	<i class="fa fa-twitter fa-fw btn_twitter_hide"></i> Twitter
 				  </a>
-				  <a href="/auth/google" class="google btn"><i class="fa fa-google fa-fw">
+				  <a href="/auth/google" class="google btn btn_google_hide"><i class="fa fa-google fa-fw">
 			          </i>Google+
 			        </a>
 		  	</div>
-			 <hr>
+			 <!-- <hr> -->
 			  <div class="form-group">
  			  	<h5 class="center_account_text">Don't have an account? <a href="/signup">Sign Up</a></h5>
-				<h5 class="center_account_text"><a href="/forgot">Forgot Your Password?</a></h5>
+				<!-- <h5 class="center_account_text"><a href="/forgot">Forgot Your Password?</a></h5> -->
 			  </div>
 		</form>
 	</div>

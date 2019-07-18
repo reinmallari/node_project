@@ -6,16 +6,42 @@
 	  <div class="col-sm-9">
 		  <h1>List of Users</h1>
 	    <hr>
-	    <form action="/account/search" method="post">
+	    <!-- <form action="/account/search" method="post">
 		   <div class="form-group ">
 			  <input id="" class="form-control" name="search" type="text" placeholder="Type company name" style="margin-bottom:20px;">
 		   </div>
-
 		   <div class="form-group">
 			  <input type="submit" id="search" value="Search" class="form-control btn btn-primary">
 		   </div>
-	    </form>
-		<div class="row">
+	   </form> -->
+	   <!-- <table class="table table-striped table-bordered">
+		    <thead>
+		      <tr>
+		        <th>Id</th>
+		        <th>Full Name</th>
+		        <th>Email</th>
+			   <th>Profile</th>
+			   <th>Action</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+			 <%for(i=0; i<data.length; i++){%>
+			      <tr>
+				   <td><%= data[i].id %></td>
+			        <td><%= data[i].fullname %></td>
+			        <td><%= data[i].email%></td>
+				   <%if (data[i].company.image == '') { %>
+					   <td><img class="profile_user_image_size" src="/images/template_avatar.png"></td>
+				   <% } %>
+				    <%if (data[i].company.image!= '') { %>
+					   <td><img class="profile_user_image_size" src="/uploads/<%= data[i].company.image %>"></td>
+				     <% } %>
+				   <td><a href="/account-profile/<%= data[i]._id %>" class="btn btn-info" role="button">View User</a></td>
+			      </tr>
+			  <% }%>
+		    </tbody>
+		  </table> -->
+		<!-- <div class="row">
 			<%for(i=0; i<data.length; i++){%>
 			<a class="color_text_a_tag_company" href="/account-profile/<%= data[i]._id %>">
 				 <div class="column">
@@ -33,7 +59,7 @@
 				 </div>
 			 </a>
 			 <% }%>
-		    </div>
+		    </div> -->
 		</div>
   	</div>
 </div>

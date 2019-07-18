@@ -228,3 +228,7 @@ input[type=submit]:hover {
 .hide_message_btn{
 	display: none;
 }
+
+.profile_user_image_size{
+	width:150px;
+}

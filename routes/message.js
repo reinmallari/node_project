@@ -22,7 +22,6 @@ module.exports = (app) => {
     });
 
     app.post('/message/:id', (req, res) => {
-
         User.findOne({'_id':req.params.id}, (err, data) => {
             var newMessage = new Message();
             newMessage.userFrom = req.user._id;
@@ -31,13 +30,10 @@ module.exports = (app) => {
             newMessage.userToName = data.fullname;
             newMessage.body = req.body.message;
             newMessage.createdAt = new Date();
-
-            console.log(newMessage);
-
+            // console.log(newMessage);
             newMessage.save((err) => {
                 res.redirect('/message/'+req.params.id);
             });
         })
-
     });
 }
